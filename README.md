@@ -18,3 +18,16 @@
 
 3. Hosting
 將網頁託管
+
+#### Material UI
+
+[官網](https://mui.com/material-ui/)
+簡單說明: Material UI 是一個開源 React 元件庫，它實作了 Google 的 Material Design。它非常全面，可以開箱即用地用於生產。有非常多可重用的組件。
+
+#### react-router-dom
+
+[官網](https://reactrouter.com/en/main)
+
+用戶端路由，允許應用程式透過連結點擊更新URL。不用像傳統網站，瀏覽器需要從Web伺服器請求文檔，下載CSS、JS資源，並呈現從伺服器發送的HTML，這個動作會使頁面重新整理。
+
+而用戶端路由不用從伺服器再次請求文件，可以立即呈現新的頁面並發出資料請求，以Fetch更新頁面。
