@@ -16,8 +16,16 @@ function NavBottom() {
         }}
       >
         <BottomNavigationAction label="Home" LinkComponent={Link} to="/" />
-        <BottomNavigationAction label="News" LinkComponent={Link} to="/news" />
-        <BottomNavigationAction label="#" LinkComponent={Link} to="#" />
+        <BottomNavigationAction
+          label="News"
+          LinkComponent={Link}
+          to="/singleNews"
+        />
+        <BottomNavigationAction
+          label="audio"
+          LinkComponent={Link}
+          to="/audioList"
+        />
       </BottomNavigation>
     </Box>
   );

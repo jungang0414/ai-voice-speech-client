@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import HomePage from "./pages/HomePage";
-import NewsList from "./pages/NewsList";
+import SingleNews from "./pages/SingleNews";
+import AudioList from "./pages/AudioList";
+import Error404 from "./components/Error404";
 
 const router = createBrowserRouter([
   {
@@ -11,10 +13,17 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+        errorElement: <Error404 />,
       },
       {
-        path: "/news",
-        element: <NewsList />,
+        path: "/singleNews",
+        element: <SingleNews />,
+        errorElement: <Error404 />,
+      },
+      {
+        path: "/audioList",
+        element: <AudioList />,
+        errorElement: <Error404 />,
       },
     ],
   },
