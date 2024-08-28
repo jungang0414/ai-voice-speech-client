@@ -31,8 +31,9 @@ function SingleNews() {
     return () => unsubscript();
   }, []);
 
-  //正式環境再將這裡修改成自己的API，我使用Railway製作後端
-  const url = "http://localhost:3000/api/v1/singleNews";
+  //正式環境再將這裡修改成自己的API，這裡使用Railway製作後端
+  const url =
+    "https://ai-voice-speech-server-production.up.railway.app/api/v1/singleNews";
 
   const handleSearchNowNews = () => {
     try {
