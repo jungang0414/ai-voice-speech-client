@@ -13,6 +13,7 @@ function SingleNews() {
 
   //儲存使用者狀態變數
   const [user, setUser] = useState(null);
+  const [searchLoading, setSearchLoading] = useState(false);
 
   useEffect(() => {
     //依照時間排序，取出最新文章
@@ -32,8 +33,6 @@ function SingleNews() {
     return () => unsubscribe();
   }, []);
 
-  console.log(text);
-
   useEffect(() => {
     const unsubscript = onAuthStateChanged(auth, (user) => {
       console.log("目前使用者狀態", user);
@@ -49,12 +48,15 @@ function SingleNews() {
   const createAPI =
     "https://ai-voice-speech-server-production.up.railway.app/api/v1/createVoice";
 
-  const handleSearchNowNews = () => {
+  const handleSearchNowNews = async () => {
+    setSearchLoading(true);
     try {
-      fetch(searchAPI);
-      alert("獲取最新文章資料");
+      await fetch(searchAPI);
     } catch (error) {
       console.error("Error: ", error);
+    } finally {
+      setSearchLoading(false);
+      alert("已獲取最新文章資料");
     }
   };
 
@@ -68,10 +70,13 @@ function SingleNews() {
         },
         body: JSON.stringify({ text, title }),
       });
+      // 待增加使用者體驗 例: 等待時間確認
       const result = await response.json();
       console.log(result);
     } catch (error) {
       console.error("Failed Post: ", error);
+    } finally {
+      alert("音源生成完畢");
     }
   };
 
@@ -111,15 +116,24 @@ function SingleNews() {
             </Box>
             {data.length > 0 && (
               <>
-                <Typography mt={2}>{data[0].name}</Typography>
-                <Divider />
-                <Typography mt={2} mb={2}>
-                  {data[0].cleanedContent}
-                </Typography>
-                <Divider />
-                <Typography variant="body1" align="justify">
-                  {data[0].content}
-                </Typography>
+                {searchLoading ? (
+                  <Box>
+                    {searchLoading && <Typography>資料獲取中..</Typography>}
+                  </Box>
+                ) : (
+                  <Box>
+                    {" "}
+                    <Typography mt={2}>{data[0].name}</Typography>
+                    <Divider />
+                    <Typography mt={2} mb={2}>
+                      {data[0].cleanedContent}
+                    </Typography>
+                    <Divider />
+                    <Typography variant="body1" align="justify">
+                      {data[0].content}
+                    </Typography>
+                  </Box>
+                )}
               </>
             )}
           </>
